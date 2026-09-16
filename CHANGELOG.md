@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.0 - 2026-09-16
+
+`github_repository` must now include the ref part of the OIDC subject, for example `org/repo:ref:refs/heads/main` or `org/repo:*`. A bare repository name used to default to every ref and is now rejected by validation.
+
 ## v1.0.0 - 2025-02-05
 
 Initial release.  
