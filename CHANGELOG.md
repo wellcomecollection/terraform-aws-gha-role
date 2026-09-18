@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.1.0 - 2026-09-18
+
+New `github_repositories`, a list of subjects any one of which may assume the role. A job that names an `environment` presents `environment:<name>` as its OIDC subject rather than the ref, so a workflow that publishes from main and then deploys through an environment cannot be described by one subject. `github_repository` is unchanged and still works on its own.
+
 ## v2.0.0 - 2026-09-16
 
 `github_repository` must now include the ref part of the OIDC subject, for example `org/repo:ref:refs/heads/main` or `org/repo:*`. A bare repository name used to default to every ref and is now rejected by validation.
