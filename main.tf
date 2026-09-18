@@ -1,3 +1,8 @@
+locals {
+  # One of the two, never both: github_repositories wins where it is set.
+  subjects = length(var.github_repositories) > 0 ? var.github_repositories : [var.github_repository]
+}
+
 data "aws_iam_policy_document" "github_actions_assume_role" {
   statement {
     actions = ["sts:AssumeRoleWithWebIdentity"]
@@ -5,7 +10,7 @@ data "aws_iam_policy_document" "github_actions_assume_role" {
 
     condition {
       test     = "StringLike"
-      values   = ["repo:${var.github_repository}"]
+      values   = [for subject in local.subjects : "repo:${subject}"]
       variable = "token.actions.githubusercontent.com:sub"
     }
 
